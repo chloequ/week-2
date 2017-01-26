@@ -76,17 +76,20 @@
     //   }
     // }
     // console.log(dataFiltered);
+
     var dataFiltered = new Array();
     for ( i = 0; i < data.length; i++){
-      if (data[i].length > 3){
-        var station = data[i][3];
-        var sNumber = station.slice(0,2);
-        if (Number(sNumber) > 20){
-          dataFiltered.push(data[i]);
+      var filterData = function(i){
+        if (data[i].length > 3){
+          var station = data[i][3];
+          var sNumber = station.slice(0,2);
+          if (Number(sNumber) > 20){
+            dataFiltered.push(data[i]);
+          }
         }
-      }
+      };
+      filterData(i);
     };
-    console.log(dataFiltered);
     /* =====================
 
     End code to filter data
@@ -111,17 +114,17 @@
     Start code to add markers to map
 
     ===================== */
-    // for (var i = 0; i < dataFiltered.length; i++){
-    //   L.marker([dataFiltered[i][1],dataFiltered[i][0]]).addTo(map);
-    // }
-
     for (var i = 0; i < dataFiltered.length; i++){
-      console.log(parseFloat(dataFiltered[i][1]), parseFloat(dataFiltered[i][0]));
-      var coordinates = [dataFiltered[i][1], dataFiltered[i][0]];
-      L.marker(coordinates).addTo(map);
-    };
-
-
+      var cleanData = function(i){
+        dataFiltered[i][1] = parseFloat(dataFiltered[i][1]);
+        dataFiltered[i][0] = parseFloat(dataFiltered[i][0]);
+      };
+      cleanData(i);
+      var addMarker = function(i){
+        L.marker([dataFiltered[i][1], dataFiltered[i][0]]).addTo(map);
+      };
+      addMarker(i);
+    }
     /* =====================
 
     End code to add markers to map

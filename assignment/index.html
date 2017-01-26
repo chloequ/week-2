@@ -56,9 +56,44 @@
       ===================== */
 
       var jsonToCsv = function(json) { console.log(json); };
+      var data = healthCenters;
+      var newHC1 = [];
+      var superHC = [];
+      var getKeyName = function(){
+        var firstObject = data[0];
+        for ( var x in firstObject){
+          newHC1.push(x);
+        };
+      };
+      getKeyName();
+
+      superHC.push(newHC1);
+
+      var getValue = function(){
+        for (i = 0; i < data.length; i++){
+          var healthObject = data[i];
+          var subHC = [];
+          for (var y in healthObject){
+            subHC.push(healthObject[y]);
+          }
+          superHC.push(subHC);
+        };
+      };
+      getValue();
+      console.log(superHC);
+
+      var myIcon = L.icon({
+        iconUrl: 'noun_573665_cc',
+      });
+
+      var addMarkers = function(map) {
+        for (var j = 1; j < superHC.length; j++){
+          L.marker([superHC[j][0], superHC[j][1]]).addTo(map).bindPopup(superHC[j][3]).openPopup();
+        };
+      };
+      addMarkers(map);
 
 
-      var addMarkers = function(map) {};
 
       /* =====================
 

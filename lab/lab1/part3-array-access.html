@@ -75,9 +75,18 @@
 
     ===================== */
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    var restaurantData = [[39.948379, -75.166043, "CheeseCake Factory"],[39.956423, -75.206741, "Chilli Szechuan"],[39.948589, -75.159844, "Morriaty's"]]
+
+    restaurantData.push([39.953666, -75.188617, "Shake Shack"]);
+    restaurantData.push([39.954717, -75.194347, "SangKee"]);
+    console.log(restaurantData);
+
+    for (i = 0; i < 5; i++){
+          L.marker(restaurantData[i]).addTo(map).bindPopup(restaurantData[i][2]).openPopup();
+    }
+
+    
+
 
     /* =====================
 

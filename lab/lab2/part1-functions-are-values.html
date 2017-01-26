@@ -66,8 +66,18 @@
       //  works! You should see 'Success: true' if all goes well.
 
       /* Define your function here */
-
-      for (var i = 0; i < theArray.length, i++) { /* Inside the loop*/ }
+      for (var i = 0; i < theArray.length; i++) { //Inside the loop*/
+        var count = function(i) {
+          if (typeof theArray[i] === 'string') {         // String case
+            yourSum = yourSum + theArray[i].length;
+          } else if (typeof theArray[i] === 'number') {  // Number case
+            yourSum = yourSum + theArray[i];
+          } else {                                      // Otherwise
+            console.log("Not sure how to proceed with value:", theArray[i]);
+          };
+        };
+        count(i);
+      }
 
       /* =====================
 
